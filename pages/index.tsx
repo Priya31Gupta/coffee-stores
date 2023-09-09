@@ -71,7 +71,7 @@ export default function Home(props : any) {
           <meta
             name="description"
             content="allows you to discover coffeestores"
-          />
+          /> 
         </Head>
         <main className={styles.main}>
           <Banner buttonText={isFindingLocation ? "Locating..." : "View stores nearby"} handleOnClick={ handleOnBannerBtnClick} />
