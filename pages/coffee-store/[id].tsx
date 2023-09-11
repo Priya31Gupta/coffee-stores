@@ -10,6 +10,7 @@ import { StoreContext } from "../../store/store-context";
 import { fetcher, isEmpty } from "../../utils";
 import React from "react";
 import useSWR from "swr";
+import dummyData from '../../data/coffee-stores.json'
 
 
 export async function getStaticProps(staticProps :any) {
@@ -61,10 +62,19 @@ const CoffeeStore = (initialProps : any) => {
         setCoffeeStore(data[0]);
         setVotingCount(data[0].voting);
       }
+      else{
+        let res = dummyData.find(el => el.id == id);
+        if(res){
+          setCoffeeStore(res);
+          setVotingCount(0);
+         } 
+      }
     }, [data]);
 
     const handleUpvoteButton = async() => {
       try{
+        let count = votingCount + 1;
+        setVotingCount(count);
         const response = await fetch('/api/favouriteCoffeeStoreById',{
           method: 'PUT',
           body: JSON.stringify({
