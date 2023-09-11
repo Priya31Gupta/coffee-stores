@@ -78,6 +78,8 @@ const CoffeeStore = (initialProps : any) => {
         }
       }catch(err){
         console.error("Error upvoting the coffee store", err);
+        let count = votingCount + 1;
+        setVotingCount(count);
       }
     }
 
